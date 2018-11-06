@@ -1,0 +1,21 @@
+# since we want to install anaconda so we keep minimal environment
+language: minimal
+
+cache:
+	directories:
+		- $HOME/.cache/Tectonic
+
+before_install:
+	  # Download and install conda
+	- wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/miniconda.sh
+	- bash $HOME/miniconda.sh -b -u -p $HOME/miniconda
+	- export PATH="$HOME/miniconda/bin:$PATH"
+	- hash -r
+
+	# Install tectonic
+	- conda install -y -c conda-forge tectonic==0.1.8
+	- conda install -y -c malramsay biber==2.5
+
+script:
+	- make
+
