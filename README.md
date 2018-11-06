@@ -2,4 +2,4 @@
 
 
 
-![Travis (.org) branch](https://img.shields.io/travis/:rameshjesswani/:travis_practice/:master.svg)
+![Travis (.org) branch](https://travis-ci.org/rameshjesswani/travis_practice.svg?branch=master)
