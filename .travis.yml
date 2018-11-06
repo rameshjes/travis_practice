@@ -1,61 +1,23 @@
-sudo: required
-language: generic
-services: docker
-
-script:
-  - python example.py
-  # We use the docker image from https://hub.docker.com/r/dxjoke/tectonic-docker/
-  - docker pull dxjoke/tectonic-docker
-  # Compiling only main.tex:
-  - docker run --mount src=$TRAVIS_BUILD_DIR/src,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "tectonic main.tex"
-  # Compiling multiple files as well as using biber:
-#  - docker run --mount src=$TRAVIS_BUILD_DIR/src,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "tectonic --keep-intermediates --reruns 0 biber-mwe.tex; biber biber-mwe; tectonic biber-mwe.tex; tectonic main.tex"
-
-#deploy:
-#  provider: releases
-#  api_key:
-#    secure: GK0T9i6YKZlKmxurW4B8lkBGCfUcehODrWA8VcuUaK4CgSYaVj2BzMJj4E7pA3Ucm76bGR9l1yWYA+RHRwg0033A8Tw54hIinAcwiuXCpRwgcVkbbxK77o8Q4g0ooRPAMePtkQrjeq1JgHN2sZUZ2CixhtCDApM8H4yaQW7bb7TmBFut/9YEfiJVBCAE0ZNjbjXSbYADRc9Zh1fy/53xJzgKC57dQnFDrnEsGlwRkrv5lQK+3Dw7ktd48pQe8C3c2LNZn052gaR0TxxzDBAyvG4nmeA17wYMvZk7UhfKYVdqUjNqwyjktvWQQDOAtWL7OrlBNfWyf5bEn1RsfsnZ7lX/3uTj1z2fQeaYcx29goSo6y7cemz+UFsuoG3ggMuD1V81xkLI82WglYnbDEd7wij5kj1+/YAliiiZtO98kLUXbyPKWq0ycmPjj1PKyiX1Gk4LMtPfvDEIdhm/uShCY+6PrOxnGPAEd+gKgA8kAdhkuZ1/IZjkbz0dQpoZgJse7V71x+cop8fvHsuFUcj/irk4qzfVkfhnKuNpMtq2z6HDvQ/GDkZKUTkNaok8rWGFGhE8TiXCoaEoWUASEQcqouQY8KHjqQT6JVgKLwsoPuA34Pb5Fb6tbFzrNT5QE7GTeoVa9GPXJ3IrKepdcRAo3I8GVEyH0rWItdWBH0tU7fo=
-#  file:
-#  - ./src/biber-mwe.pdf
-#  - ./src/main.pdf
-#  skip_cleanup: true
-#  on:
-#    tags: true
+language: python
+python:
+  - "2.7"
+  - "3.6"
+cache: pip
+install: pip install -r requirements.txt
+script: python example.py
 
 
 
+# travis , docker and latex
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-# since we want to install anaconda so we keep minimal environment
-#language: minimal
-
-#cache:
-# directories:
-#  - $HOME/.cache/Tectonic
-
-#before_install:
-# Download and install conda
-# - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $HOME/miniconda.sh
-# - bash $HOME/miniconda.sh -b -u -p $HOME/miniconda
-# - export PATH="$HOME/miniconda/bin:$PATH"
-# - hash -r
-
-# Install tectonic
-# - conda install -y -c conda-forge tectonic==0.1.8
-# - conda install -y -c malramsay biber==2.5
+# sudo: required
+#language: generic
+#services: docker
 
 #script:
-# - make
-
+  # We use the docker image from https://hub.docker.com/r/dxjoke/tectonic-docker/
+#  - docker pull dxjoke/tectonic-docker
+  # Compiling only main.tex:
+#  - docker run --mount src=$TRAVIS_BUILD_DIR/src,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "tectonic main.tex"
+  # Compiling multiple files as well as using biber:
+#  - docker run --mount src=$TRAVIS_BUILD_DIR/src,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "tectonic --keep-intermediates --reruns 0 biber-mwe.tex; biber biber-mwe; tectonic biber-mwe.tex; tectonic main.tex"
